@@ -193,30 +193,61 @@
   --bs-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
 }
 
-/* Modal Overlay - Sem padding no mobile para fullscreen */
-.bs-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; font-family: var(--bs-font); box-sizing: border-box; }
+/* Modal Overlay - Fullscreen no Mobile */
+.bs-modal-overlay { 
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  background: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px); 
+  z-index: 9999; 
+  align-items: center; 
+  justify-content: center; 
+  font-family: var(--bs-font); 
+  box-sizing: border-box; 
+}
 
-/* Container - Mobile: Fullscreen por padrão */
+/* Container: Comportamento de App */
 .bs-modal-container { 
   background: var(--bs-bg); 
   width: 100vw; 
   height: 100vh; 
-  max-width: none; 
+  max-width: 100%; 
   max-height: 100%; 
   border-radius: 0; 
   overflow: hidden; 
   display: flex; 
   flex-direction: column; 
+  position: relative;
 }
 
 /* Header Fixo */
-.bs-modal-header { padding: 18px 20px; border-bottom: 1px solid var(--bs-border); display: flex; justify-content: space-between; align-items: center; background: #FFF; position: sticky; top: 0; z-index: 10; }
+.bs-modal-header { 
+  padding: calc(18px + env(safe-area-inset-top)) 20px 18px; 
+  border-bottom: 1px solid var(--bs-border); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background: #FFF; 
+  z-index: 10; 
+}
 .bs-header-text h2 { margin: 0; font-size: 18px; color: var(--bs-text); font-weight: 700; }
 .bs-subtitle { margin: 4px 0 0; font-size: 13px; color: var(--bs-text-secondary); }
 .bs-close-btn { background: #F2F2F7; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--bs-text); line-height: 1; }
 
-/* Body com scroll interno */
-.bs-modal-body { padding: 20px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+/* Corpo com scroll independente */
+.bs-modal-body { 
+  padding: 20px; 
+  padding-bottom: calc(30px + env(safe-area-inset-bottom));
+  overflow-y: auto; 
+  flex: 1; 
+  -webkit-overflow-scrolling: touch; 
+}
+
 .bs-step { display: none; animation: fadeIn 0.3s ease; }
 .bs-step.active { display: block; }
 
@@ -294,7 +325,7 @@ input:checked + .bs-slider:before { transform: translateX(22px); }
 
 <script>
 // ========================================= 
-// JAVASCRIPT: LÓGICA E CONTROLES (v1.3.0)
+// JAVASCRIPT: LÓGICA E CONTROLES (v1.2.0)
 // ========================================= 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -314,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
   });
 
+  // [NÃO ALTERAR LOGICA ABAIXO] 
   const CONFIG = {
     duracaoSessao: 30,
     aderencia: 1.0,
@@ -341,7 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let kcalBS = kcalEsteira * (d.vacuo ? CONFIG.bonus.vacuo : 1) * (d.infra ? CONFIG.bonus.infra : 1) * CONFIG.bonus.marketing * d.intensidade;
     kcalBS = Math.min(kcalBS, d.pesoAtual * CONFIG.limites.kcalPorKg, CONFIG.limites.maxAbsoluto);
 
-    // Lógica Estabilizada (freqRef = 2.2)
     const freqRef = 2.2;
     const defDietaSemanal = d.deficitDieta * 7;
     const defMetaSemanal = CONFIG.metabolismo[d.biotipo] * 7;
@@ -414,7 +445,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI(4);
   };
 
-  document.getElementById("openBodyShapeModal").onclick = () => { document.getElementById("bodyShapeModal").style.display = "flex"; updateUI(1); };
-  document.getElementById("closeBodyShapeModal").onclick = () => document.getElementById("bodyShapeModal").style.display = "none";
+  // Trava de Scroll do Body para Mobile
+  const openModal = () => {
+    document.getElementById("bodyShapeModal").style.display = "flex";
+    document.body.style.overflow = "hidden"; // Impede rolagem da LP ao fundo
+    updateUI(1);
+  };
+
+  const closeModal = () => {
+    document.getElementById("bodyShapeModal").style.display = "none";
+    document.body.style.overflow = ""; // Restaura rolagem
+  };
+
+  document.getElementById("openBodyShapeModal").onclick = openModal;
+  document.getElementById("closeBodyShapeModal").onclick = closeModal;
 });
 </script>
