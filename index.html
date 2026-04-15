@@ -1,6 +1,6 @@
 <!-- ========================================= -->
 <!-- MODAL BODY SHAPE CALCULATOR               -->
-<!-- VERSÃO: 1.2.0                             -->
+<!-- VERSÃO: 1.3.0                             -->
 <!-- AUTOR: Think Ads | thinkads.com.br        -->
 <!-- DATA: 2026-04-10                          -->
 <!-- ========================================= -->
@@ -46,7 +46,7 @@
             <input type="number" id="bsPesoObjetivo" placeholder="Ex: 70" required min="30" max="300">
           </div>
 
-          <button type="button" id="btnNext1" class="bs-btn-primary bs-btn-full">Próximo: Estilo de Vida</button>
+          <button type="button" id="btnNext1" class="bs-btn-primary bs-btn-full" style="margin-top: 10px;">Próximo: Estilo de Vida</button>
         </div>
 
         <div id="bsStep2" class="bs-step">
@@ -90,7 +90,7 @@
             </div>
           </div>
 
-          <div class="bs-grid-2" style="margin-top: 20px;">
+          <div class="bs-actions">
             <button type="button" id="btnPrev1" class="bs-btn-secondary">Voltar</button>
             <button type="button" id="btnNext2" class="bs-btn-primary">Próximo: A Máquina</button>
           </div>
@@ -105,10 +105,10 @@
               <span id="bsVelocidadeVal">6.0</span>
             </div>
             <input type="range" id="bsVelocidade" min="1" max="12" step="0.5" value="6">
-            <p style="font-size: 10px; color: #8E8E93; margin-top: 4px;">*Esta velocidade ajusta a dificuldade de todos os comparativos.</p>
+            <p style="font-size: 11px; color: #8E8E93; margin-top: 6px; line-height: 1.3;">*Esta velocidade ajusta a dificuldade de todos os comparativos.</p>
           </div>
 
-          <div class="bs-slider-group">
+          <div class="bs-slider-group" style="margin-top: 20px;">
             <div class="bs-slider-header">
               <label>Inclinação (Nível)</label>
               <span id="bsInclinacaoVal">5</span>
@@ -116,7 +116,7 @@
             <input type="range" id="bsInclinacao" min="1" max="10" step="1" value="5">
           </div>
 
-          <div class="bs-toggles-group">
+          <div class="bs-toggles-group" style="margin-top: 25px;">
             <div class="bs-toggle-item">
               <label>Vácuo Ativo</label>
               <label class="bs-switch"><input type="checkbox" id="bsVacuo" checked><span class="bs-slider round"></span></label>
@@ -127,7 +127,7 @@
             </div>
           </div>
 
-          <div class="bs-grid-2" style="margin-top: 20px;">
+          <div class="bs-actions">
             <button type="button" id="btnPrev2" class="bs-btn-secondary">Voltar</button>
             <button type="submit" id="btnCalcular" class="bs-btn-primary">Ver Resultado</button>
           </div>
@@ -139,11 +139,11 @@
         <div class="bs-result-highlight">
           <p>Para eliminar <strong><span id="resPeso"></span>kg</strong> de gordura:</p>
           <div class="bs-big-number"><span id="resSessoes"></span> <small>sessões</small></div>
-          <p>Tempo estimado na Body Shape: <strong><span id="resTempo"></span></strong></p>
+          <p style="font-size: 14px; margin-top: 5px;">Tempo estimado na Body Shape: <strong><span id="resTempo"></span></strong></p>
         </div>
 
         <div class="bs-comparison-area">
-          <h4>Eficiência de Queima Calórica</h4>
+          <h4 style="margin-bottom: 15px;">Eficiência de Queima Calórica</h4>
           
           <div class="bs-comp-bar">
             <span>Corrida de Rua (Dinâmica)</span>
@@ -151,7 +151,7 @@
           </div>
           
           <div class="bs-comp-bar">
-            <span>Simulador de Escada </span>
+            <span>Simulador de Escada</span>
             <div class="bs-bar-wrap"><div class="bs-bar normal" id="barEscada"></div><span id="resEscada"></span></div>
           </div>
 
@@ -160,9 +160,9 @@
             <div class="bs-bar-wrap"><div class="bs-bar normal" id="barEsteira"></div><span id="resEsteira"></span></div>
           </div>
 
-          <div class="bs-comp-bar">
-            <span>Body Shape (Alta Performance)</span>
-            <div class="bs-bar-wrap"><div class="bs-bar highlight" id="barBodyShape"></div><span id="resBodyShape"></span></div>
+          <div class="bs-comp-bar" style="margin-top: 15px;">
+            <span style="color: var(--bs-primary); font-weight: 700;">Body Shape (Alta Performance)</span>
+            <div class="bs-bar-wrap"><div class="bs-bar highlight" id="barBodyShape"></div><span id="resBodyShape" style="font-weight: 800;"></span></div>
           </div>
 
           <p class="bs-efficiency-text">
@@ -170,68 +170,134 @@
           </p>
         </div>
 
-        <button type="button" id="btnRefazer" class="bs-btn-secondary bs-btn-full" style="margin-top: 15px;">Novo Cálculo</button>
+        <button type="button" id="btnRefazer" class="bs-btn-secondary bs-btn-full" style="margin-top: 20px;">Novo Cálculo</button>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-/* CSS: PADRÃO APPLE / ALTA CONVERSÃO */
+/* ========================================= */
+/* CSS: PADRÃO APPLE / ALTA CONVERSÃO / MOBILE FIRST */
+/* ========================================= */
 :root {
   --bs-primary: #007AFF;
   --bs-secondary: #E5E5EA;
-  --bs-bg: rgba(255, 255, 255, 0.9);
+  --bs-bg: rgba(255, 255, 255, 0.95);
   --bs-text: #1C1C1E;
   --bs-text-secondary: #8E8E93;
   --bs-border: #D1D1D6;
   --bs-radius: 24px;
-  --bs-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  --bs-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
 }
-.bs-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 9999; align-items: center; justify-content: center; font-family: var(--bs-font); }
-.bs-modal-container { background: var(--bs-bg); width: 100%; max-width: 480px; max-height: 90vh; border-radius: var(--bs-radius); overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-.bs-modal-header { padding: 24px; border-bottom: 1px solid var(--bs-border); display: flex; justify-content: space-between; }
-.bs-header-text h2 { margin: 0; font-size: 20px; }
-.bs-close-btn { background: #E5E5EA; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
-.bs-modal-body { padding: 24px; }
-.bs-step { display: none; animation: fadeIn 0.4s ease; }
+
+/* Overlay com padding para não encostar na borda em telas muito pequenas */
+.bs-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; font-family: var(--bs-font); padding: 16px; box-sizing: border-box; }
+
+/* Contêiner Principal - Flex Column para rolagem interna perfeita */
+.bs-modal-container { background: var(--bs-bg); width: 100%; max-width: 480px; max-height: 100%; border-radius: var(--bs-radius); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
+
+/* Header Fixo (Sticky) para rolagem confortável em celular */
+.bs-modal-header { padding: 18px 20px; border-bottom: 1px solid var(--bs-border); display: flex; justify-content: space-between; align-items: center; background: var(--bs-bg); position: sticky; top: 0; z-index: 10; }
+.bs-header-text h2 { margin: 0; font-size: 18px; color: var(--bs-text); }
+.bs-subtitle { margin: 4px 0 0; font-size: 13px; color: var(--bs-text-secondary); }
+.bs-close-btn { background: #E5E5EA; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--bs-text); }
+
+.bs-modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+.bs-step { display: none; animation: fadeIn 0.3s ease; }
 .bs-step.active { display: block; }
-.bs-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.bs-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-input, select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--bs-border); font-size: 15px; margin-bottom: 10px; background: #fff; box-sizing: border-box; }
-.bs-section-title { font-size: 12px; color: var(--bs-text-secondary); font-weight: 700; text-transform: uppercase; margin: 15px 0 10px; }
-.bs-label { font-size: 13px; margin-bottom: 4px; display: block; color: var(--bs-text-secondary); }
-.bs-btn-primary { background: var(--bs-primary); color: #fff; border: none; padding: 16px; border-radius: 14px; font-weight: 600; cursor: pointer; width: 100%; box-sizing: border-box; }
-.bs-btn-secondary { background: var(--bs-secondary); color: var(--bs-text); border: none; padding: 16px; border-radius: 14px; font-weight: 600; cursor: pointer; width: 100%; box-sizing: border-box; }
-.bs-slider-group { margin-bottom: 20px; }
-.bs-slider-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.bs-slider-header span { color: var(--bs-primary); font-weight: 700; }
-input[type=range] { accent-color: var(--bs-primary); width: 100%; }
-.bs-toggles-group { display: flex; gap: 10px; margin-bottom: 20px; }
-.bs-toggle-item { flex: 1; background: #fff; padding: 12px; border-radius: 12px; border: 1px solid var(--bs-border); display: flex; justify-content: space-between; align-items: center; }
-.bs-switch { position: relative; width: 44px; height: 24px; }
+
+/* -------------------------------------
+   GRIDS MOBILE FIRST (1 Coluna Padrão)
+-------------------------------------- */
+.bs-grid-2, .bs-grid-3 { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+
+/* -------------------------------------
+   INPUTS PREVENINDO ZOOM NO IOS (16px+)
+-------------------------------------- */
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select { 
+  width: 100%; 
+  padding: 14px 16px; 
+  border-radius: 14px; 
+  border: 1px solid var(--bs-border); 
+  font-size: 16px; /* Essencial para evitar auto-zoom no iPhone */
+  background: #fff; 
+  box-sizing: border-box; 
+  color: var(--bs-text);
+  font-family: var(--bs-font);
+  -webkit-appearance: none; /* Padroniza o visual do Select no iOS */
+  appearance: none;
+}
+select { background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238E8E93%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
+input::placeholder { color: #A8A8A8; }
+
+.bs-section-title { font-size: 12px; color: var(--bs-text-secondary); font-weight: 700; text-transform: uppercase; margin: 20px 0 10px; letter-spacing: 0.5px; }
+.bs-label { font-size: 13px; margin-bottom: 6px; display: block; color: var(--bs-text-secondary); font-weight: 500; }
+
+/* -------------------------------------
+   BOTÕES E AÇÕES (Mobile: Empilhados)
+-------------------------------------- */
+.bs-btn-primary { background: var(--bs-primary); color: #fff; border: none; padding: 16px; border-radius: 14px; font-weight: 600; font-size: 16px; cursor: pointer; text-align: center; transition: opacity 0.2s; }
+.bs-btn-secondary { background: var(--bs-secondary); color: var(--bs-text); border: none; padding: 16px; border-radius: 14px; font-weight: 600; font-size: 16px; cursor: pointer; text-align: center; transition: opacity 0.2s; }
+.bs-btn-primary:active, .bs-btn-secondary:active { opacity: 0.8; }
+.bs-btn-full { width: 100%; display: block; box-sizing: border-box; }
+
+.bs-actions { display: flex; flex-direction: column-reverse; gap: 12px; margin-top: 24px; }
+.bs-actions button { width: 100%; margin: 0; box-sizing: border-box; }
+
+/* -------------------------------------
+   CONTROLES DESLIZANTES E TOGGLES (Mobile)
+-------------------------------------- */
+.bs-slider-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; font-weight: 500; }
+.bs-slider-header span { color: var(--bs-primary); font-weight: 700; font-size: 16px; }
+input[type=range] { accent-color: var(--bs-primary); width: 100%; height: 6px; border-radius: 5px; outline: none; padding: 0; border: none; margin-top: 5px; }
+
+.bs-toggles-group { display: flex; flex-direction: column; gap: 12px; }
+.bs-toggle-item { background: #fff; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--bs-border); display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 500; }
+.bs-switch { position: relative; width: 48px; height: 28px; }
 .bs-switch input { opacity: 0; width: 0; height: 0; }
-.bs-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #E5E5EA; border-radius: 24px; transition: .3s; }
-.bs-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px; background: #fff; border-radius: 50%; transition: .3s; }
+.bs-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #E5E5EA; border-radius: 28px; transition: .3s; }
+.bs-slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 2px; bottom: 2px; background: #fff; border-radius: 50%; transition: .3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 input:checked + .bs-slider { background: #34C759; }
 input:checked + .bs-slider:before { transform: translateX(20px); }
 
-/* Área de Resultados e Eficiência */
-.bs-result-highlight { text-align: center; padding: 20px; background: #fff; border-radius: 18px; margin-bottom: 20px; }
-.bs-big-number { font-size: 48px; font-weight: 800; color: var(--bs-primary); margin: 5px 0; }
-.bs-big-number small { font-size: 18px; color: var(--bs-text-secondary); }
-.bs-comp-bar { margin-bottom: 12px; }
-.bs-comp-bar span { font-size: 13px; font-weight: 500; display: block; margin-bottom: 4px; }
-.bs-bar-wrap { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; }
-.bs-bar { height: 12px; border-radius: 6px; background: #E5E5EA; transition: width 1s ease-in-out; }
+/* -------------------------------------
+   ÁREA DE RESULTADOS
+-------------------------------------- */
+.bs-result-highlight { text-align: center; padding: 24px 20px; background: #F2F2F7; border-radius: 18px; margin-bottom: 24px; }
+.bs-result-highlight p { margin: 0; font-size: 15px; color: var(--bs-text); }
+.bs-big-number { font-size: 52px; font-weight: 800; color: var(--bs-primary); margin: 8px 0; letter-spacing: -1px; }
+.bs-big-number small { font-size: 18px; color: var(--bs-text-secondary); font-weight: 600; letter-spacing: 0; }
+
+.bs-comp-bar { margin-bottom: 14px; }
+.bs-comp-bar span { font-size: 13px; font-weight: 500; display: block; margin-bottom: 6px; }
+.bs-bar-wrap { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 700; }
+.bs-bar { height: 14px; border-radius: 7px; background: #E5E5EA; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
 .bs-bar.highlight { background: linear-gradient(90deg, #FF3B30, #FF9500); }
 .bs-bar.normal { background: var(--bs-primary); }
 
-/* Caixa de destaque de marketing da Eficiência */
-.bs-efficiency-text { text-align: center; color: #1C1C1E; font-weight: 500; font-size: 16px; margin-top: 25px; padding: 15px; background: #F2F2F7; border-radius: 14px; }
+.bs-efficiency-text { text-align: center; color: #1C1C1E; font-weight: 500; font-size: 16px; margin-top: 30px; padding: 18px; background: #E8F8F5; border: 1px solid #C3E8DE; border-radius: 16px; line-height: 1.4; }
 .bs-efficiency-text strong { color: #34C759; font-weight: 800; font-size: 18px; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ========================================= */
+/* RESPONSIVIDADE: TABLET E DESKTOP (+480px) */
+/* ========================================= */
+@media (min-width: 480px) {
+  .bs-modal-header { padding: 24px 30px; }
+  .bs-header-text h2 { font-size: 20px; }
+  .bs-modal-body { padding: 30px; }
+  
+  .bs-grid-2 { grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .bs-grid-3 { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  
+  .bs-actions { flex-direction: row; gap: 16px; }
+  .bs-actions button { flex: 1; }
+  
+  .bs-toggles-group { flex-direction: row; gap: 16px; }
+  .bs-toggle-item { flex: 1; }
+}
 </style>
 
 <script>
@@ -252,15 +318,15 @@ const CONFIG = {
   
   // Travas biológicas para evitar promessas impossíveis
   limites: { 
-    kcalPorKg: 15,  // Teto de gasto calórico por quilo corporal na sessão (faixa: 5 a 25)
-    maxAbsoluto: 1000 // Trava de segurança final para o teto máximo de calorias em 30 min NA MÁQUINA (faixa: 700 a 1500)
+    kcalPorKg: 25,  // Teto de gasto calórico por quilo corporal na sessão (faixa: 5 a 25)
+    maxAbsoluto: 1500 // Trava de segurança final para o teto máximo de calorias em 30 min NA MÁQUINA (faixa: 700 a 1500)
   },
   
   // Bônus tecnológicos da Body Shape (Multiplicadores de Eficiência)
   bonus: { 
-    vacuo: 1.10,      // Pressão negativa (Default +18%) (faixa: 1.10 a 1.25)
-    infra: 1.05,      // Calor termocutâneo (Default +8%) (faixa: 1.05 a 1.10)
-    marketing: 1.05   // Fator EPOC / Oxigenação celular (Default +15%) (faixa: 1.05 a 1.15)
+    vacuo: 1.25,      // Pressão negativa (Default +18%) (faixa: 1.10 a 1.25)
+    infra: 1.10,      // Calor termocutâneo (Default +8%) (faixa: 1.05 a 1.10)
+    marketing: 1.15   // Fator EPOC / Oxigenação celular (Default +15%) (faixa: 1.05 a 1.15)
   },
   
   // Déficit basal natural por biotipo
@@ -281,8 +347,8 @@ function processarCalculo(d) {
   // CÁLCULO DAs SESSÕES (30 MINUTOS)
   // ============================================
 
-  // 1kg fat (Default 7700)  (5000 a 6000 kcal Curto prazo) (7000 a 8000 kcal Médio/longo prazo)
   const totalKcalQueimar = pesoPerder * 5000;
+  // 1kg fat (Default 7700)  (5000 a 6000 kcal Curto prazo) (7000 a 8000 kcal Médio/longo prazo)
   const vel = d.velocidade;
 
   // 1. CORRIDA DE RUA (MET Dinâmico)
@@ -310,19 +376,21 @@ function processarCalculo(d) {
   const efiEscada = Math.round((kcalEscada / kcalEsteira) * 100);
   const efiBS = Math.round((kcalBS / kcalEsteira) * 100);
 
-// ============================================
+  // ============================================
   // LÓGICA DE ESTABILIZAÇÃO COMERCIAL (ÂNCORA)
   // ============================================
   
   // freqRef: Frequência semanal de referência (2.2x). 
-  // Serve para fixar a contribuição da dieta por sessão
+  // Serve para fixar a contribuição da dieta por sessão, impedindo que 
+  // o número total de sessões mude quando o aluno altera sua frequência real.
   const freqRef = 2.2; 
 
   // Transforma o déficit diário informado/biotipo em valores semanais
   const defDietaSemanal = d.deficitDieta * 7;
   const defMetaSemanal = CONFIG.metabolismo[d.biotipo] * 7;
   
-  // Calculamos o total de sessões com base no esforço combinado (Máquina + Proporção da Dieta por sessão de referência)
+  // O cálculo abaixo distribui o auxílio da dieta/metabolismo de forma fixa
+  // sessoes = Total de Gordura / (Queima da Máquina + Auxílio Fixo da Dieta)
   const sessoesBS = Math.ceil(totalKcalQueimar / (kcalBS + (defDietaSemanal + defMetaSemanal) / freqRef));
 
   // O tempo em semanas passa a ser uma consequência das sessões totais divididas pela frequência real escolhida
@@ -330,15 +398,21 @@ function processarCalculo(d) {
 
   // Retorno do objeto com todos os resultados processados para a interface
   return {
-    pesoPerder, // Total de quilos que o aluno deseja eliminar
+    pesoPerder,                // Total de quilos que o aluno deseja eliminar
     spmGerado: Math.round(spm), // Passos por minuto calculados para o simulador de escada
-    sessoesBS: sessoesBS, // Retorna o número estabilizado de sessões
-    tempoBS: Math.ceil(semanasBS) > 12 ? `${Math.ceil(semanasBS/4.3)} meses` : `${Math.ceil(semanasBS)} semanas`, // Formatação inteligente do tempo:
+    sessoesBS: sessoesBS,      // O "Pacote" total de sessões (valor estabilizado comercialmente)
+    
+    // Formatação inteligente do tempo: 
+    // Se o prazo for > 12 semanas, exibe em meses (divisão por 4.3 para média de semanas/mês)
+    // Caso contrário, exibe o número de semanas arredondado para cima.
+    tempoBS: Math.ceil(semanasBS) > 12 
+      ? `${Math.ceil(semanasBS / 4.3)} meses` 
+      : `${Math.ceil(semanasBS)} semanas`,
     
     // Objeto de comparação de performance (Base 100 = Esteira Comum)
     eficiencia: {
-      rua: efiRua, 
-      escada: efiEscada, 
+      rua: efiRua,
+      escada: efiEscada,
       esteira: 100, 
       bs: efiBS
     },
