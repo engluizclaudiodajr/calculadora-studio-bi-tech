@@ -1,0 +1,424 @@
+<!-- ========================================= -->
+<!-- MODAL BODY SHAPE CALCULATOR               -->
+<!-- VERSÃO: 1.2.0                             -->
+<!-- AUTOR: Think Ads | thinkads.com.br        -->
+<!-- DATA: 2026-04-10                          -->
+<!-- ========================================= -->
+
+<button id="openBodyShapeModal" class="bs-btn-primary">Calcular sessões de treino</button>
+
+<div id="bodyShapeModal" class="bs-modal-overlay">
+  <div class="bs-modal-container">
+    <div class="bs-modal-header">
+      <div class="bs-header-text">
+        <h2>Calculadora de Studio Bi Tech</h2>
+        <p id="bsStepIndicator" class="bs-subtitle">Passo 1 de 4: Seus Dados</p>
+      </div>
+      <button id="closeBodyShapeModal" class="bs-close-btn">&times;</button>
+    </div>
+
+    <div class="bs-modal-body">
+      <form id="bsCalculatorForm">
+        
+        <div id="bsStep1" class="bs-step active">
+          <div class="bs-input-group bs-grid-2">
+            <input type="text" id="bsNome" placeholder="Seu Nome" required>
+            <input type="email" id="bsEmail" placeholder="Seu E-mail" required>
+          </div>
+          <div class="bs-input-group bs-grid-2">
+            <input type="tel" id="bsTelefone" placeholder="WhatsApp" required maxlength="15">
+            <select id="bsSexo" required>
+              <option value="" disabled selected>Sexo biológico</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+            </select>
+          </div>
+
+          <div class="bs-section-title">Medidas Essenciais</div>
+          <div class="bs-input-group bs-grid-3">
+            <input type="number" id="bsIdade" placeholder="Idade" required min="15" max="100">
+            <input type="number" id="bsAltura" placeholder="Altura (cm)" required min="100" max="250">
+            <input type="number" id="bsPesoAtual" placeholder="Peso (kg)" required min="30" max="300">
+          </div>
+
+          <div class="bs-input-group">
+            <label class="bs-label">Qual seu peso desejado? (kg)</label>
+            <input type="number" id="bsPesoObjetivo" placeholder="Ex: 70" required min="30" max="300">
+          </div>
+
+          <button type="button" id="btnNext1" class="bs-btn-primary bs-btn-full">Próximo: Estilo de Vida</button>
+        </div>
+
+        <div id="bsStep2" class="bs-step">
+          <div class="bs-section-title" style="margin-top: 0;">Rotina de treinamentos</div>
+          <div class="bs-input-group bs-grid-2">
+            <div>
+              <label class="bs-label">Treinos/Semana</label>
+              <select id="bsFrequencia" required>
+                <option value="1">1x na semana</option>
+                <option value="2">2x na semana</option>
+                <option value="3" selected>3x na semana</option>
+                <option value="4">4x na semana</option>
+                <option value="5">5x na semana</option>
+              </select>
+            </div>
+            <div>
+              <label class="bs-label">Nível de Esforço</label>
+              <select id="bsIntensidade" required>
+                <option value="1.0">Leve</option>
+                <option value="1.1" selected>Moderado</option>
+                <option value="1.2">Intenso</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bs-section-title">Metabolismo e Nutrição</div>
+          <div class="bs-input-group bs-grid-2">
+            <div>
+              <label class="bs-label">Alimentação</label>
+              <select id="bsDieta" required>
+                <option value="0">Não sigo nenhuma dieta</option>
+                <option value="600" selected>Estou reduzindo excessos</option> <option value="1000">Estou seguindo uma dieta</option> </select>
+            </div>
+            <div>
+              <label class="bs-label">Biotipo Corporal</label>
+              <select id="bsBiotipo" required>
+                <option value="ectomorfo">Facilidade para perder peso</option>
+                <option value="mesomorfo" selected>Ganho e perco peso com facilidade</option>
+                <option value="endomorfo">Dificuldade para perder peso</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bs-grid-2" style="margin-top: 20px;">
+            <button type="button" id="btnPrev1" class="bs-btn-secondary">Voltar</button>
+            <button type="button" id="btnNext2" class="bs-btn-primary">Próximo: A Máquina</button>
+          </div>
+        </div>
+
+        <div id="bsStep3" class="bs-step">
+          <div class="bs-section-title" style="margin-top: 0;">Configuração da Sessão</div>
+          
+          <div class="bs-slider-group">
+            <div class="bs-slider-header">
+              <label>Velocidade (km/h)</label>
+              <span id="bsVelocidadeVal">6.0</span>
+            </div>
+            <input type="range" id="bsVelocidade" min="1" max="12" step="0.5" value="6">
+            <p style="font-size: 10px; color: #8E8E93; margin-top: 4px;">*Esta velocidade ajusta a dificuldade de todos os comparativos.</p>
+          </div>
+
+          <div class="bs-slider-group">
+            <div class="bs-slider-header">
+              <label>Inclinação (Nível)</label>
+              <span id="bsInclinacaoVal">5</span>
+            </div>
+            <input type="range" id="bsInclinacao" min="1" max="10" step="1" value="5">
+          </div>
+
+          <div class="bs-toggles-group">
+            <div class="bs-toggle-item">
+              <label>Vácuo Ativo</label>
+              <label class="bs-switch"><input type="checkbox" id="bsVacuo" checked><span class="bs-slider round"></span></label>
+            </div>
+            <div class="bs-toggle-item">
+              <label>Infravermelho</label>
+              <label class="bs-switch"><input type="checkbox" id="bsInfravermelho" checked><span class="bs-slider round"></span></label>
+            </div>
+          </div>
+
+          <div class="bs-grid-2" style="margin-top: 20px;">
+            <button type="button" id="btnPrev2" class="bs-btn-secondary">Voltar</button>
+            <button type="submit" id="btnCalcular" class="bs-btn-primary">Ver Resultado</button>
+          </div>
+        </div>
+
+      </form>
+
+      <div id="bsStep4" class="bs-step bs-result-area">
+        <div class="bs-result-highlight">
+          <p>Para eliminar <strong><span id="resPeso"></span>kg</strong> de gordura:</p>
+          <div class="bs-big-number"><span id="resSessoes"></span> <small>sessões</small></div>
+          <p>Tempo estimado na Body Shape: <strong><span id="resTempo"></span></strong></p>
+        </div>
+
+        <div class="bs-comparison-area">
+          <h4>Eficiência de Queima Calórica</h4>
+          
+          <div class="bs-comp-bar">
+            <span>Corrida de Rua (Dinâmica)</span>
+            <div class="bs-bar-wrap"><div class="bs-bar normal" id="barCorrida"></div><span id="resCorrida"></span></div>
+          </div>
+          
+          <div class="bs-comp-bar">
+            <span>Simulador de Escada </span>
+            <div class="bs-bar-wrap"><div class="bs-bar normal" id="barEscada"></div><span id="resEscada"></span></div>
+          </div>
+
+          <div class="bs-comp-bar">
+            <span>Esteira Comum (Referência)</span>
+            <div class="bs-bar-wrap"><div class="bs-bar normal" id="barEsteira"></div><span id="resEsteira"></span></div>
+          </div>
+
+          <div class="bs-comp-bar">
+            <span>Body Shape (Alta Performance)</span>
+            <div class="bs-bar-wrap"><div class="bs-bar highlight" id="barBodyShape"></div><span id="resBodyShape"></span></div>
+          </div>
+
+          <p class="bs-efficiency-text">
+            A Body Shape queima <strong><span id="resEficienciaMais"></span>% mais</strong> que a esteira comum.
+          </p>
+        </div>
+
+        <button type="button" id="btnRefazer" class="bs-btn-secondary bs-btn-full" style="margin-top: 15px;">Novo Cálculo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* CSS: PADRÃO APPLE / ALTA CONVERSÃO */
+:root {
+  --bs-primary: #007AFF;
+  --bs-secondary: #E5E5EA;
+  --bs-bg: rgba(255, 255, 255, 0.9);
+  --bs-text: #1C1C1E;
+  --bs-text-secondary: #8E8E93;
+  --bs-border: #D1D1D6;
+  --bs-radius: 24px;
+  --bs-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+.bs-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 9999; align-items: center; justify-content: center; font-family: var(--bs-font); }
+.bs-modal-container { background: var(--bs-bg); width: 100%; max-width: 480px; max-height: 90vh; border-radius: var(--bs-radius); overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+.bs-modal-header { padding: 24px; border-bottom: 1px solid var(--bs-border); display: flex; justify-content: space-between; }
+.bs-header-text h2 { margin: 0; font-size: 20px; }
+.bs-close-btn { background: #E5E5EA; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
+.bs-modal-body { padding: 24px; }
+.bs-step { display: none; animation: fadeIn 0.4s ease; }
+.bs-step.active { display: block; }
+.bs-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bs-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+input, select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--bs-border); font-size: 15px; margin-bottom: 10px; background: #fff; box-sizing: border-box; }
+.bs-section-title { font-size: 12px; color: var(--bs-text-secondary); font-weight: 700; text-transform: uppercase; margin: 15px 0 10px; }
+.bs-label { font-size: 13px; margin-bottom: 4px; display: block; color: var(--bs-text-secondary); }
+.bs-btn-primary { background: var(--bs-primary); color: #fff; border: none; padding: 16px; border-radius: 14px; font-weight: 600; cursor: pointer; width: 100%; box-sizing: border-box; }
+.bs-btn-secondary { background: var(--bs-secondary); color: var(--bs-text); border: none; padding: 16px; border-radius: 14px; font-weight: 600; cursor: pointer; width: 100%; box-sizing: border-box; }
+.bs-slider-group { margin-bottom: 20px; }
+.bs-slider-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.bs-slider-header span { color: var(--bs-primary); font-weight: 700; }
+input[type=range] { accent-color: var(--bs-primary); width: 100%; }
+.bs-toggles-group { display: flex; gap: 10px; margin-bottom: 20px; }
+.bs-toggle-item { flex: 1; background: #fff; padding: 12px; border-radius: 12px; border: 1px solid var(--bs-border); display: flex; justify-content: space-between; align-items: center; }
+.bs-switch { position: relative; width: 44px; height: 24px; }
+.bs-switch input { opacity: 0; width: 0; height: 0; }
+.bs-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #E5E5EA; border-radius: 24px; transition: .3s; }
+.bs-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 2px; bottom: 2px; background: #fff; border-radius: 50%; transition: .3s; }
+input:checked + .bs-slider { background: #34C759; }
+input:checked + .bs-slider:before { transform: translateX(20px); }
+
+/* Área de Resultados e Eficiência */
+.bs-result-highlight { text-align: center; padding: 20px; background: #fff; border-radius: 18px; margin-bottom: 20px; }
+.bs-big-number { font-size: 48px; font-weight: 800; color: var(--bs-primary); margin: 5px 0; }
+.bs-big-number small { font-size: 18px; color: var(--bs-text-secondary); }
+.bs-comp-bar { margin-bottom: 12px; }
+.bs-comp-bar span { font-size: 13px; font-weight: 500; display: block; margin-bottom: 4px; }
+.bs-bar-wrap { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; }
+.bs-bar { height: 12px; border-radius: 6px; background: #E5E5EA; transition: width 1s ease-in-out; }
+.bs-bar.highlight { background: linear-gradient(90deg, #FF3B30, #FF9500); }
+.bs-bar.normal { background: var(--bs-primary); }
+
+/* Caixa de destaque de marketing da Eficiência */
+.bs-efficiency-text { text-align: center; color: #1C1C1E; font-weight: 500; font-size: 16px; margin-top: 25px; padding: 15px; background: #F2F2F7; border-radius: 14px; }
+.bs-efficiency-text strong { color: #34C759; font-weight: 800; font-size: 18px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+// ========================================= 
+// JAVASCRIPT: LÓGICA V0.6.0 (EFICIÊNCIA %)
+// ========================================= 
+
+// Máscara de Telefone
+document.getElementById('bsTelefone').addEventListener('input', function (e) {
+  let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+  e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+});
+
+// CONFIGURAÇÕES MESTRAS E LIMIARES DE SEGURANÇA
+const CONFIG = {
+  duracaoSessao: 30, // Tempo fixo do comparativo
+  aderencia: 1.00,   // Taxa de assiduidade do aluno aos treinos (Faixa: 0.65 a 0.90)
+  
+  // Travas biológicas para evitar promessas impossíveis
+  limites: { 
+    kcalPorKg: 15,  // Teto de gasto calórico por quilo corporal na sessão (faixa: 5 a 25)
+    maxAbsoluto: 1000 // Trava de segurança final para o teto máximo de calorias em 30 min NA MÁQUINA (faixa: 700 a 1500)
+  },
+  
+  // Bônus tecnológicos da Body Shape (Multiplicadores de Eficiência)
+  bonus: { 
+    vacuo: 1.10,      // Pressão negativa (Default +18%) (faixa: 1.10 a 1.25)
+    infra: 1.05,      // Calor termocutâneo (Default +8%) (faixa: 1.05 a 1.10)
+    marketing: 1.05   // Fator EPOC / Oxigenação celular (Default +15%) (faixa: 1.05 a 1.15)
+  },
+  
+  // Déficit basal natural por biotipo
+  metabolismo: { ectomorfo: 200, mesomorfo: 100, endomorfo: 50 } // (Perde fácil, Padrão, dificuldade de emagrecer)
+};
+
+// Motor Central de Processamento Fisiológico
+function processarCalculo(d) {
+  const pesoPerder = d.pesoAtual - d.pesoObjetivo;
+  const alturaM = d.altura / 100;
+  const imcAlvo = d.pesoObjetivo / (alturaM * alturaM);
+
+  // Validações de Saúde
+  if (imcAlvo < 18.5) return { erro: "Objetivo abaixo do IMC saudável (18.5). Por favor, revise sua meta para preservar a saúde." };
+  if (pesoPerder <= 0) return { erro: "O peso objetivo deve ser menor que o atual para haver cálculo de perda de gordura." };
+
+  // ============================================
+  // CÁLCULO DAs SESSÕES (30 MINUTOS)
+  // ============================================
+
+  // 1kg fat (Default 7700)  (5000 a 6000 kcal Curto prazo) (7000 a 8000 kcal Médio/longo prazo)
+  const totalKcalQueimar = pesoPerder * 5000;
+  const vel = d.velocidade;
+
+  // 1. CORRIDA DE RUA (MET Dinâmico)
+  const metCorrida = vel * 1.1;
+  const kcalCorrida = (metCorrida * 3.5 * d.pesoAtual) / 200 * CONFIG.duracaoSessao;
+
+  // 2. ESCADA (SPM Dinâmico)
+  const spm = 24 + ((vel - 1) * ((160 - 24) / (12 - 1)));
+  const metEscada = ((0.2 * spm) + 3.5) / 3.5;
+  const kcalEscada = (metEscada * 3.5 * d.pesoAtual) / 200 * CONFIG.duracaoSessao;
+
+  // 3. ESTEIRA PADRÃO (VO2 ACSM)
+  const vel_m_min = (vel * 1000) / 60;
+  const incl = d.inclinacao / 100;
+  const vo2_esteira = (0.1 * vel_m_min) + (1.8 * vel_m_min * incl) + 3.5;
+  const kcalEsteira = (vo2_esteira * d.pesoAtual * 5) / 1000 * CONFIG.duracaoSessao;
+
+  // 4. BODY SHAPE (Esteira + Tecnologias + Trava de Segurança)
+  let kcalBS = kcalEsteira * (d.vacuo ? CONFIG.bonus.vacuo : 1) * (d.infra ? CONFIG.bonus.infra : 1) * CONFIG.bonus.marketing * d.intensidade;
+  const travaPeso = d.pesoAtual * CONFIG.limites.kcalPorKg;
+  kcalBS = Math.min(kcalBS, travaPeso, CONFIG.limites.maxAbsoluto);
+
+  // --- CÁLCULOS DE EFICIÊNCIA COMPARATIVA (%) ---
+  const efiRua = Math.round((kcalCorrida / kcalEsteira) * 100);
+  const efiEscada = Math.round((kcalEscada / kcalEsteira) * 100);
+  const efiBS = Math.round((kcalBS / kcalEsteira) * 100);
+
+// ============================================
+  // LÓGICA DE ESTABILIZAÇÃO COMERCIAL (ÂNCORA)
+  // ============================================
+  
+  // freqRef: Frequência semanal de referência (2.2x). 
+  // Serve para fixar a contribuição da dieta por sessão
+  const freqRef = 2.2; 
+
+  // Transforma o déficit diário informado/biotipo em valores semanais
+  const defDietaSemanal = d.deficitDieta * 7;
+  const defMetaSemanal = CONFIG.metabolismo[d.biotipo] * 7;
+  
+  // Calculamos o total de sessões com base no esforço combinado (Máquina + Proporção da Dieta por sessão de referência)
+  const sessoesBS = Math.ceil(totalKcalQueimar / (kcalBS + (defDietaSemanal + defMetaSemanal) / freqRef));
+
+  // O tempo em semanas passa a ser uma consequência das sessões totais divididas pela frequência real escolhida
+  const semanasBS = sessoesBS / d.freqSemanal;
+
+  // Retorno do objeto com todos os resultados processados para a interface
+  return {
+    pesoPerder, // Total de quilos que o aluno deseja eliminar
+    spmGerado: Math.round(spm), // Passos por minuto calculados para o simulador de escada
+    sessoesBS: sessoesBS, // Retorna o número estabilizado de sessões
+    tempoBS: Math.ceil(semanasBS) > 12 ? `${Math.ceil(semanasBS/4.3)} meses` : `${Math.ceil(semanasBS)} semanas`, // Formatação inteligente do tempo:
+    
+    // Objeto de comparação de performance (Base 100 = Esteira Comum)
+    eficiencia: {
+      rua: efiRua, 
+      escada: efiEscada, 
+      esteira: 100, 
+      bs: efiBS
+    },
+    
+    // Cálculo do diferencial tecnológico (O quanto a Body Shape é superior à esteira em %)
+    maisEficiente: efiBS - 100 
+  };
+}
+
+// -------- MANIPULAÇÃO DA INTERFACE E WIZARD --------
+document.addEventListener("DOMContentLoaded", () => {
+  const steps = [1, 2, 3, 4].map(n => document.getElementById(`bsStep${n}`));
+  const indicator = document.getElementById("bsStepIndicator");
+
+  const updateUI = (step) => {
+    steps.forEach((s, i) => s.classList.toggle('active', i === step - 1));
+    const labels = ["Seus Dados", "Rotina", "A Máquina", "Seu Resultado"];
+    indicator.innerText = `Passo ${step} de 4: ${labels[step-1]}`;
+  };
+
+  // Atualização Visual dos Sliders
+  document.getElementById("bsVelocidade").oninput = function() { document.getElementById("bsVelocidadeVal").innerText = parseFloat(this.value).toFixed(1); };
+  document.getElementById("bsInclinacao").oninput = function() { document.getElementById("bsInclinacaoVal").innerText = this.value; };
+
+  // Navegação do Wizard
+  document.getElementById("btnNext1").onclick = () => { if(document.getElementById("bsCalculatorForm").checkValidity()) updateUI(2); else document.getElementById("bsCalculatorForm").reportValidity(); };
+  document.getElementById("btnNext2").onclick = () => updateUI(3);
+  document.getElementById("btnPrev1").onclick = () => updateUI(1);
+  document.getElementById("btnPrev2").onclick = () => updateUI(2);
+  document.getElementById("btnRefazer").onclick = () => updateUI(1);
+
+  // Disparo do Cálculo Principal
+  document.getElementById("bsCalculatorForm").onsubmit = (e) => {
+    e.preventDefault();
+    const d = {
+      pesoAtual: parseFloat(document.getElementById("bsPesoAtual").value),
+      pesoObjetivo: parseFloat(document.getElementById("bsPesoObjetivo").value),
+      altura: parseFloat(document.getElementById("bsAltura").value),
+      sexo: document.getElementById("bsSexo").value,
+      idade: parseInt(document.getElementById("bsIdade").value),
+      freqSemanal: parseInt(document.getElementById("bsFrequencia").value),
+      intensidade: parseFloat(document.getElementById("bsIntensidade").value),
+      deficitDieta: parseInt(document.getElementById("bsDieta").value),
+      biotipo: document.getElementById("bsBiotipo").value,
+      velocidade: parseFloat(document.getElementById("bsVelocidade").value),
+      inclinacao: parseInt(document.getElementById("bsInclinacao").value),
+      vacuo: document.getElementById("bsVacuo").checked,
+      infra: document.getElementById("bsInfravermelho").checked
+    };
+
+    const res = processarCalculo(d);
+    if (res.erro) return alert(res.erro);
+
+    // Destaques Superiores
+    document.getElementById("resPeso").innerText = res.pesoPerder.toFixed(1);
+    document.getElementById("resSessoes").innerText = res.sessoesBS;
+    document.getElementById("resTempo").innerText = res.tempoBS;
+
+    // Renderização do Gráfico de Eficiência
+    const efi = res.eficiencia;
+    const maxEfi = Math.max(efi.bs, efi.rua, efi.escada, efi.esteira);
+    
+    const setBar = (id, percentual, textId) => {
+      document.getElementById(id).style.width = (percentual / maxEfi * 100) + "%";
+      document.getElementById(textId).innerText = percentual + "%";
+    };
+
+    // Animação e preenchimento dos Gráficos de Barra
+    setBar("barCorrida", efi.rua, "resCorrida");
+    setBar("barEscada", efi.escada, "resEscada");
+    setBar("barEsteira", efi.esteira, "resEsteira");
+    setBar("barBodyShape", efi.bs, "resBodyShape");
+
+    // Frase de Fechamento ("Queima X% mais")
+    document.getElementById("resEficienciaMais").innerText = res.maisEficiente;
+    updateUI(4);
+  };
+
+  // Controles de Abertura/Fechamento do Modal
+  document.getElementById("openBodyShapeModal").onclick = () => { document.getElementById("bodyShapeModal").style.display = "flex"; updateUI(1); };
+  document.getElementById("closeBodyShapeModal").onclick = () => document.getElementById("bodyShapeModal").style.display = "none";
+});
+</script>
